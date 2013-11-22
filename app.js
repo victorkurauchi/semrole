@@ -4,14 +4,14 @@
  */
 
 var express = require('express'),
-  routes = require('./routes'),
-  api = require('./routes/api'),
-  http = require('http'),
-  path = require('path');
+    routes  = require('./routes'),
+    api     = require('./routes/api'),
+    http    = require('http'),
+    path    = require('path');
 
-var app = module.exports = express();
+var app    = module.exports = express();
 var server = require('http').createServer(app);
-var io = require('socket.io').listen(server);
+var io     = require('socket.io').listen(server);
 
 /**
  * Configuration
