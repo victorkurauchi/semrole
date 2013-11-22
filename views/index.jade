@@ -2,18 +2,34 @@ extends layout
 
 block body
   div(ng-controller='AppCtrl')
-    h2 Hello {{name}}
-    ul.menu
-      li
-        a(href='view1') view1
-      li
-        a(href='view2') view2
+    div.navbar.navbar-default.navbar-fixed-top#navbar-top(role="navigation")
+      .container
+        .navbar-header
+          button.navbar-toggle(data-togle="collapse")(data-target=".navbar-collapse")          
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
 
-    div(ng-view)
+          a.navbar-brand(href="#") 
+            strong  semrole
+              span.glyphicon.glyphicon-repeat
+        
+    div.clearfix
 
-    div
-      | Angular seed app: v
-      span(app-version)
+    div.container    
+      div.row.row-offcanvas.row-offcanvas-right       
+
+        div.col-md-2.sidebar-offcanvas#sidebar(role="navigation")
+          div.list-group
+            a.list-group-item(href="#", ng-class="{active: layout == 'inicio'}") Início
+            a.list-group-item(href="/operadores", ng-class="{active: layout == 'operadores'}") Operadores 
+            a.list-group-item(href="/") Clientes
+            a.list-group-item(href="/") Dolor
+            a.list-group-item(href="/") Sit amet  
+            
+        div.col-md-10
+          div(ng-view) 
 
   //- script(src='js/lib/angular/angular.js')
   script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js')
@@ -22,3 +38,5 @@ block body
   script(src='js/controllers.js')
   script(src='js/filters.js')
   script(src='js/directives.js')
+  script(src='http://codeorigin.jquery.com/jquery-1.10.2.min.js')
+  script(src='js/lib/bootstrap/bootstrap.js')

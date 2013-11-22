@@ -1,0 +1,45 @@
+body {
+  padding-top: 70px;
+}
+
+#navbar-top {
+  background-color: #0A0A1A;
+}
+
+#chat-container {
+  position: fixed; 
+  bottom:0; 
+  left:0; 
+  right:0; 
+  margin: 0 auto;
+  width: 88%;
+
+}
+
+.text-wrapper {
+  height: 151px;  
+  width: 85%;
+  overflow: scroll;
+}
+
+.chat {
+  float: right; 
+  position: relative; 
+  margin: 0 5px;
+}
+
+#send-button {
+  cursor: pointer;
+}
+
+.users-online {
+  height: 151px; 
+  width: 15%;
+  padding: 5px;
+  overflow: scroll;
+}
+
+.text-users {
+  font-size: 11px;
+  clear: both;
+}
