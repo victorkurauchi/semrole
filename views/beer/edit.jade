@@ -1,0 +1,27 @@
+h1
+  | {{ cerveja.name }}
+
+h2 {{msg}}
+
+  form(role="form", methor="post")
+    .form-group
+      label(for="cvj_nome") Cerveja 
+      input(type="text", name="name", data-ng-model="cerveja.name" placeholder="Cerveja").form-control#cvj_nome
+
+    .form-group
+      label(for="cvj_tipo") Tipo 
+      input(type="text", name="type", data-ng-model="cerveja.type" placeholder="Tipo").form-control#cvj_tipo
+
+    .form-group
+      label(for="cvj_descricao") Descrição 
+      input(type="text", name="description", data-ng-model="cerveja.description" placeholder="Descrição").form-control#cvj_descricao
+
+    input(type="hidden", name="_id", data-ng-model="cerveja._id")
+
+    button.btn.btn-default(data-ng-click="salvar()") salvar
+    button.btn.btn-default(data-ng-click="deletar()") excluir
+
+  h3 Alterações
+  ul
+    li(ng-repeat="cerveja in cervejas") 
+      {{ cerveja.name }} - {{ cerveja.type }}

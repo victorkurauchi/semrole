@@ -2,88 +2,46 @@ extends layout
 
 block body
   div(ng-controller='AppCtrl')
+    div.navbar.navbar-default.navbar-fixed-top#navbar-top(role="navigation")
+      .container
+        .navbar-header
+          button.navbar-toggle(data-togle="collapse")(data-target=".navbar-collapse")          
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
 
-    <!-- header and nav -->
-    .row
-      .large-12.columns
-        .panel
-          h1 sem rolê
-    <!-- end header and nav -->
-          
-    .row
-      .large-3.columns
-        .panel
-          a(href="#")
-            img(src="http://placehold.it/300x240&text=[img]")
-          h5
-            a(href="#") Seu nome
-          div.section-container.vertical-nav(data-section="", data-options="deep_linking: false; one_up: true")
-            section.section
-              h5.title
-                a(href="#") Seção 1
-            section.section
-              h5.title
-                a(href="#") Seção 2
-            section.section
-              h5.title
-                a(href="#") Seção 3
-            section.section
-              h5.title
-                a(href="#") Seção 4
-            section.section
-              h5.title
-                a(href="#") Seção 5
+          a.navbar-brand(href="#") 
+            strong  semrole
+              span.glyphicon.glyphicon-repeat
+        
+    div.clearfix
 
-      .large-6.columns
-        .row
-          .large-2.columns.small-3
-            img(src="http://placehold.it/80x80&text=[img]")  
-          .large-10.columns
-            p
-              strong Fulano disse: 
-              | Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong.
-            ul.inline-list
-              li
-                a(href="#") Responder
-                a(href="#") Compartilhar
+    div.container    
+      div.row.row-offcanvas.row-offcanvas-right       
 
-        div(ng-view)
+        div.col-md-2.sidebar-offcanvas#sidebar(role="navigation")
+          div.list-group
+            a.list-group-item(href="#", ng-class="{active: layout == 'inicio'}") Início
+              span.glyphicon.pull-right.glyphicon-glass 
+            a.list-group-item(href="/operadores", ng-class="{active: layout == 'operadores'}") Eventos 
+              span.glyphicon.pull-right.glyphicon-leaf 
+            a.list-group-item(href="/") Feed
+              span.glyphicon.pull-right.glyphicon-heart 
+            a.list-group-item(href="/") Fotos
+              span.glyphicon.pull-right.glyphicon-picture 
+            a.list-group-item(href="/") Ideias
+              span.glyphicon.pull-right.glyphicon-glass  
+            
+        div.col-md-10
+          div(ng-view) 
 
-      <!-- Right Sidebar -->
-      <!-- On small devices this column is hidden -->
-      aside.large-3.columns.hide-for-small
-        p
-          img(src="http://placehold.it/300x440&text=[ad]")
-        p
-          img(src="http://placehold.it/300x440&text=[ad]")
-
-    <!-- Footer -->
-    footer.row
-      .large-12.columns
-        hr
-        .row
-          .large-5.columns
-            p &copy; Copyright no one at all. Go to town.
-          .large-7.columns
-            ul.inline-list.right
-              li
-                a(href="#") Seção 1
-              li
-                a(href="#") Seção 2
-              li
-                a(href="#") Seção 3
-              li
-                a(href="#") Seção 4
-              li
-                a(href="#") Seção 5
-
-  script(src='/socket.io/socket.io.js')
-  script(src='bower_components/angular/angular.js')
-  script(src='bower_components/angular-socket-io/socket.js')
+  //- script(src='js/lib/angular/angular.js')
+  script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js')
   script(src='js/app.js')
   script(src='js/services.js')
   script(src='js/controllers.js')
   script(src='js/filters.js')
   script(src='js/directives.js')
   script(src='http://codeorigin.jquery.com/jquery-1.10.2.min.js')
-  script(src='js/vendor/foundation.min.js')
+  script(src='js/lib/bootstrap/bootstrap.js')

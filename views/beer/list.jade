@@ -1,0 +1,41 @@
+h3 {{ msg }}
+
+form(role="form", method="post")
+  .form-group
+    label(for="cvj_nome") Cerveja 
+    input(type="text", 
+          value="{{cerveja.name}}", 
+          name="name", 
+          data-ng-model="form.name", 
+          placeholder="Cerveja").form-control#cvj_nome
+
+  .form-group
+    label(for="cvj_tipo") Tipo 
+    input(type="text", 
+          value="{{cerveja.type}}", 
+          name="type", 
+          data-ng-model="form.type", 
+          placeholder="Tipo").form-control#cvj_tipo
+
+  .form-group
+    label(for="cvj_descricao") Descrição 
+    input(type="text", 
+          value="{{cerveja.description}}", 
+          name="description", 
+          data-ng-model="form.description", 
+          placeholder="Descrição").form-control#cvj_descricao
+
+  button.btn.btn-default(data-ng-click="criar()") criar
+
+button.btn.btn-default(data-ng-click="listar()") listar
+
+.clearfix
+
+.row
+  .col-xs-4
+    input(type="text", data-ng-model="search", placeholder="pesquisa...").form-control
+    
+ul.list-unstyled
+  li(data-ng-repeat="cerveja in cervejas | orderBy: 'name':true | filter:search ", ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}")
+    p {{ cerveja.name }} - {{ cerveja.type }} - 
+    a(href="/beers/{{ cerveja._id }}") editar
