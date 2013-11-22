@@ -23,10 +23,15 @@ block body
         div.col-md-2.sidebar-offcanvas#sidebar(role="navigation")
           div.list-group
             a.list-group-item(href="#", ng-class="{active: layout == 'inicio'}") Início
-            a.list-group-item(href="/operadores", ng-class="{active: layout == 'operadores'}") Operadores 
-            a.list-group-item(href="/") Clientes
-            a.list-group-item(href="/") Dolor
-            a.list-group-item(href="/") Sit amet  
+              span.glyphicon.pull-right.glyphicon-glass 
+            a.list-group-item(href="/operadores", ng-class="{active: layout == 'operadores'}") Eventos 
+              span.glyphicon.pull-right.glyphicon-leaf 
+            a.list-group-item(href="/") Feed
+              span.glyphicon.pull-right.glyphicon-heart 
+            a.list-group-item(href="/") Fotos
+              span.glyphicon.pull-right.glyphicon-picture 
+            a.list-group-item(href="/") Ideias
+              span.glyphicon.pull-right.glyphicon-glass  
             
         div.col-md-10
           div(ng-view) 

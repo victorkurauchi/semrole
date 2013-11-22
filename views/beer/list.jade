@@ -1,33 +1,41 @@
-h2 {{ msg }}
+h3 {{ msg }}
 
-form(action="", method="post")
-  label
-    input(
-      type="text", 
-      name="name", 
-      value="{{ cerveja.name }}"
-      placeholder="name",  
-      data-ng-model="form.name")
-  label
-    input(
-      type="text", 
-      name="type", 
-      placeholder="type", 
-      data-ng-model="form.type")
-  label
-    textarea(
-      name="description", 
-      placeholder="description", 
-      data-ng-model="form.description")
+form(role="form", method="post")
+  .form-group
+    label(for="cvj_nome") Cerveja 
+    input(type="text", 
+          value="{{cerveja.name}}", 
+          name="name", 
+          data-ng-model="form.name", 
+          placeholder="Cerveja").form-control#cvj_nome
 
-  button.btn.btn-salvar(data-ng-click="criar()") CRIAR
+  .form-group
+    label(for="cvj_tipo") Tipo 
+    input(type="text", 
+          value="{{cerveja.type}}", 
+          name="type", 
+          data-ng-model="form.type", 
+          placeholder="Tipo").form-control#cvj_tipo
 
-button(data-ng-click="listar()")
-  | Listar
+  .form-group
+    label(for="cvj_descricao") Descrição 
+    input(type="text", 
+          value="{{cerveja.description}}", 
+          name="description", 
+          data-ng-model="form.description", 
+          placeholder="Descrição").form-control#cvj_descricao
 
-input(type="text", data-ng-model="search")
-ul
+  button.btn.btn-default(data-ng-click="criar()") criar
+
+button.btn.btn-default(data-ng-click="listar()") listar
+
+.clearfix
+
+.row
+  .col-xs-4
+    input(type="text", data-ng-model="search", placeholder="pesquisa...").form-control
+    
+ul.list-unstyled
   li(data-ng-repeat="cerveja in cervejas | orderBy: 'name':true | filter:search ", ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}")
-    {{ cerveja.name }} - {{ cerveja.type }} - 
-    a(href="/beers/{{ cerveja._id }}")
-      | Edit
+    p {{ cerveja.name }} - {{ cerveja.type }} - 
+    a(href="/beers/{{ cerveja._id }}") editar
