@@ -136,8 +136,16 @@ angular.module('myApp.controllers', []).
 
     $scope.events = [];
 
-    var access_token = 'CAACEdEose0cBAErWlCZBeuQ5r8ZCYc9QwpXxquzLYmhBpYIWgfrh2ietFvOaedg173NNTpRrZAwb53lL9jdNudKwW2ZAuTAZAeruZAZB1ReY4dgFUrFNCG4DdZAGWYBO2w6ZBXi7nrXef2duLGamnMHlvbQRZBZAnTFchgG9Ycxou6saZAanspAlCvsYefeGwfmrqz0TJQg350fClAZDZD';
-    var request = Facebook.getEvents(access_token, 'events').then(
+    // var search = 'SELECT name, all_members_count, attending_count, creator FROM event WHERE can_invite_friends = 1';
+    // var sql = 'fql?q=' + search;
+
+    //var search = 'SELECT name, all_members_count, attending_count, creator FROM event WHERE can_invite_friends = 1';
+    //var sql = 'fql?q=SELECT+name+all_members_count+attending_count+creator+FROM+event+WHERE+can_invite_friends=1';
+    var access_token = 'CAACEdEose0cBAFSGJZBvNinNa4RGw8THjCnPwu9o7aYnc81hKE8LzZCPiIQx8ePwR4N0hxOmBfxT8jECr6n7GptEuz5349JF7kBkzOfK3pKnAo2ziLw0T3EPb7tK2gjQNEkb5wJlZBGxgfhXHpBE0xZApV1VCOaUIjGuh733ti9iZATJGdVjoy8hJzksc5V7yZCleXtwQ0PgZDZD';
+    
+    var sql = 'SELECT name, location, fan_count, were_here_count FROM page WHERE contains("mcdonalds")';
+
+    var request = Facebook.getData('access_token', 'events', sql).then(
       function(response) {
 
         var events = response.data.data;
@@ -157,8 +165,8 @@ angular.module('myApp.controllers', []).
   controller('PostController', function($scope, Facebook) {
     $scope.posts = [];
 
-    var access_token = 'CAACEdEose0cBAErWlCZBeuQ5r8ZCYc9QwpXxquzLYmhBpYIWgfrh2ietFvOaedg173NNTpRrZAwb53lL9jdNudKwW2ZAuTAZAeruZAZB1ReY4dgFUrFNCG4DdZAGWYBO2w6ZBXi7nrXef2duLGamnMHlvbQRZBZAnTFchgG9Ycxou6saZAanspAlCvsYefeGwfmrqz0TJQg350fClAZDZD';
-    var request = Facebook.getPosts(access_token, 'feed').then(
+    var access_token = 'CAACEdEose0cBAFSGJZBvNinNa4RGw8THjCnPwu9o7aYnc81hKE8LzZCPiIQx8ePwR4N0hxOmBfxT8jECr6n7GptEuz5349JF7kBkzOfK3pKnAo2ziLw0T3EPb7tK2gjQNEkb5wJlZBGxgfhXHpBE0xZApV1VCOaUIjGuh733ti9iZATJGdVjoy8hJzksc5V7yZCleXtwQ0PgZDZD';
+    var request = Facebook.getData(access_token, 'feed').then(
       function(response) {
 
         var posts = response.data.data;

@@ -12,20 +12,16 @@ angular.module('myApp.services', []).
     var url = 'https://graph.facebook.com/';
 
     return {
-      getPosts: function(access_token, query) {
-        var request = $http.get(url + 'me/' + query + '?access_token='+access_token).then(
-          function(response) {
-            return response;
-          },
-          function(err) {
-            return err;
-          }
-        ); 
+      getData: function(access_token, query, sql) {
 
-        return request;
-      },
-      getEvents: function(access_token, query) {
-        var request = $http.get(url + 'me/' + query + '?access_token='+access_token).then(
+        if (sql) 
+          url = url + sql + '&access_token=' + access_token;
+        else
+          url = url + 'me/' + query + '?access_token='+access_token;
+
+        console.log('url: ' + url);
+        
+        var request = $http.get(url).then(
           function(response) {
             return response;
           },
