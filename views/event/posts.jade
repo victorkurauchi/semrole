@@ -1,0 +1,13 @@
+table.table
+  thead
+    tr
+      th Post
+      th Descrição
+      th Tipo
+      th Data de criação
+  tbody
+    tr(ng-repeat="post in posts")
+      td {{post.name}}
+      td {{post.message}}
+      td {{post.type}}
+      td {{post.created_time}}

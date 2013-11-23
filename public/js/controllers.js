@@ -131,4 +131,46 @@ angular.module('myApp.controllers', []).
       });
     }
 
+  }).
+  controller('EventController', function($scope, Facebook) {
+
+    $scope.events = [];
+
+    var access_token = 'CAACEdEose0cBAErWlCZBeuQ5r8ZCYc9QwpXxquzLYmhBpYIWgfrh2ietFvOaedg173NNTpRrZAwb53lL9jdNudKwW2ZAuTAZAeruZAZB1ReY4dgFUrFNCG4DdZAGWYBO2w6ZBXi7nrXef2duLGamnMHlvbQRZBZAnTFchgG9Ycxou6saZAanspAlCvsYefeGwfmrqz0TJQg350fClAZDZD';
+    var request = Facebook.getEvents(access_token, 'events').then(
+      function(response) {
+
+        var events = response.data.data;
+        console.log(events);
+
+        angular.forEach(events, function(value, key){
+          $scope.events.push(value);
+        });
+
+      },
+      function(err) {
+
+      }
+    );
+
+  }).
+  controller('PostController', function($scope, Facebook) {
+    $scope.posts = [];
+
+    var access_token = 'CAACEdEose0cBAErWlCZBeuQ5r8ZCYc9QwpXxquzLYmhBpYIWgfrh2ietFvOaedg173NNTpRrZAwb53lL9jdNudKwW2ZAuTAZAeruZAZB1ReY4dgFUrFNCG4DdZAGWYBO2w6ZBXi7nrXef2duLGamnMHlvbQRZBZAnTFchgG9Ycxou6saZAanspAlCvsYefeGwfmrqz0TJQg350fClAZDZD';
+    var request = Facebook.getPosts(access_token, 'feed').then(
+      function(response) {
+
+        var posts = response.data.data;
+        console.log(posts);
+
+        angular.forEach(posts, function(value, key){
+          $scope.posts.push(value);
+        });
+
+      },
+      function(err) {
+
+      }
+    );
   });
