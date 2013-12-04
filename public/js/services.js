@@ -68,18 +68,42 @@ angular.module('myApp.services', []).
         // Autenticando app
         FB.login(function(response) {
           console.log('autenticando...');
+
           if (response.authResponse) {
             self.authenticated = true;
-            FB.api('/me', function(response) {
-              console.log('Good to see you, ' + response.name + '.');
+            var uid = response.authResponse.userID;
+            var accessToken = response.authResponse.accessToken;
+            self.authenticated = true;
+
+            /*var fql_query = "SELECT name, description, all_members_count, attending_count, creator, location, start_time, end_time FROM event WHERE eid IN ( SELECT eid FROM event_member WHERE (uid in (SELECT uid2 FROM friend WHERE uid1 = me()) OR uid = me()) ) AND start_time > now()" ;
+
+            FB.api({
+                method: 'fql.query',
+                query: fql_query
+              },
+              function(response){
+                console.log(response);
+              }
+            );  */
+
+              FB.api({ method: 'fql.query', query: 'SELECT read_stream,offline_access,publish_stream FROM permissions WHERE uid=me()' }, function(resp) {
+                for(var key in resp[0]) {
+                    if(resp[0][key] === "1")
+                        console.log(key+' is granted')
+                    else
+                        console.log(key+' is not granted')
+                }
             });
-          } else {
+          } 
+          else {
            console.log('User cancelled login or did not fully authorize.');
           }
+
          });
 
         // Obtendo status do usuário atual
         FB.getLoginStatus(function(response) {
+
           if (response.status === 'connected') {
             // the user is logged in and has authenticated your
             // app, and response.authResponse supplies

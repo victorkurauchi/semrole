@@ -135,43 +135,17 @@ angular.module('myApp.controllers', []).
   controller('EventController', function($scope, Facebook, $FB) {
 
     $scope.events = [];
-
-    // var search = 'SELECT name, all_members_count, attending_count, creator FROM event WHERE can_invite_friends = 1';
-    // var sql = 'fql?q=' + search;
-
-    //var search = 'SELECT name, all_members_count, attending_count, creator FROM event WHERE can_invite_friends = 1';
-    //var sql = 'fql?q=SELECT+name+all_members_count+attending_count+creator+FROM+event+WHERE+can_invite_friends=1';
-    // var access_token = 'CAACEdEose0cBAFSGJZBvNinNa4RGw8THjCnPwu9o7aYnc81hKE8LzZCPiIQx8ePwR4N0hxOmBfxT8jECr6n7GptEuz5349JF7kBkzOfK3pKnAo2ziLw0T3EPb7tK2gjQNEkb5wJlZBGxgfhXHpBE0xZApV1VCOaUIjGuh733ti9iZATJGdVjoy8hJzksc5V7yZCleXtwQ0PgZDZD';
-    
-    // var sql = 'SELECT name, location, fan_count, were_here_count FROM page WHERE contains("mcdonalds")';
-
-    // var request = Facebook.getData('access_token', 'events', sql).then(
-    //   function(response) {
-
-    //     var events = response.data.data;
-    //     console.log(events);
-
-    //     angular.forEach(events, function(value, key){
-    //       $scope.events.push(value);
-    //     });
-
-    //   },
-    //   function(err) {
-
-    //   }
-    // );
    
     $scope.$watch(function() {
       return $FB.isAuthenticated()
-    },function(value){
+    }, function(value){
    
       console.log("VALUE isAuthenticated",value);
       // YEP, this will work.
-      if(value){
-        $scope.facebook_friends = $FB.api('/me/friends', function(response) {
-          $scope.facebook_friends = response.data;
-          console.log("FRIENDS",response);
-        });
+      if(value) {
+        console.log('worked');
+        //$scope.facebook_friends = $FB.api('/me/friends');
+
       }
     },true);
 
@@ -179,7 +153,7 @@ angular.module('myApp.controllers', []).
   controller('PostController', function($scope, Facebook) {
     $scope.posts = [];
 
-    var access_token = 'CAACEdEose0cBAFSGJZBvNinNa4RGw8THjCnPwu9o7aYnc81hKE8LzZCPiIQx8ePwR4N0hxOmBfxT8jECr6n7GptEuz5349JF7kBkzOfK3pKnAo2ziLw0T3EPb7tK2gjQNEkb5wJlZBGxgfhXHpBE0xZApV1VCOaUIjGuh733ti9iZATJGdVjoy8hJzksc5V7yZCleXtwQ0PgZDZD';
+    var access_token = 'CAAGEC9IUwRMBAGLmu79Ber3F42ZBqlfwuCYwZAQZAsad9vSk4CrUAL9P06NmtUU4f740MUzecLJ6pAICd7VpjetbkdlPdOiPJZCZAcSikIRCF3qVJlDwynL9ZCAKBc9kV3FqmtPdme8arxJRnXZBZAFELFKM9dy3oVkc59dnz0lmUkyk2Pvz2G6Nkzjac5k9sRFLiqwGBFo4hAZDZD';
     var request = Facebook.getData(access_token, 'feed').then(
       function(response) {
 
