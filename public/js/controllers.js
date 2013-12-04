@@ -136,24 +136,13 @@ angular.module('myApp.controllers', []).
 
     $scope.events = [];
    
-    $scope.$watch(function() {
-      return $FB.isAuthenticated()
-    }, function(value){
-   
-      console.log("VALUE isAuthenticated",value);
-      // YEP, this will work.
-      if(value) {
-        console.log('worked');
-        //$scope.facebook_friends = $FB.api('/me/friends');
-
-      }
-    },true);
+    
 
   }).
   controller('PostController', function($scope, Facebook) {
     $scope.posts = [];
 
-    var access_token = 'CAAGEC9IUwRMBAGLmu79Ber3F42ZBqlfwuCYwZAQZAsad9vSk4CrUAL9P06NmtUU4f740MUzecLJ6pAICd7VpjetbkdlPdOiPJZCZAcSikIRCF3qVJlDwynL9ZCAKBc9kV3FqmtPdme8arxJRnXZBZAFELFKM9dy3oVkc59dnz0lmUkyk2Pvz2G6Nkzjac5k9sRFLiqwGBFo4hAZDZD';
+    var access_token = 'CAAGEC9IUwRMBAAFtawADLEjd3C6tZABimWZAPG8PyKwxZBfXxXTgM6ZBVtTQ19OtBBdNlmEfIl2lBwuXhMzvOlogseHyhbTf0emEb8ZCSxtAhxJUJgyBjZC4ZAo9buyrgISOgTaZA4tprhslZBa9vpjb49LnjRmZAkJ9ZBRn5ZBAspkGkV0Xi6m09UtD9bjCASJu990DJjMuBmLgwwZDZD';
     var request = Facebook.getData(access_token, 'feed').then(
       function(response) {
 
