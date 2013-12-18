@@ -40,6 +40,7 @@ angular.module('myApp.services', []).
  
     // Our own customisations
     var _fb =  {
+
       loaded: fbLoaded,
       isLoaded : function(){
         return this.loaded;
@@ -70,12 +71,16 @@ angular.module('myApp.services', []).
           console.log('autenticando...');
 
           if (response.authResponse) {
-            self.authenticated = true;
-            var uid = response.authResponse.userID;
-            var accessToken = response.authResponse.accessToken;
-            self.authenticated = true;
 
-            var fql_query = "SELECT name, description, all_members_count, attending_count, creator, location, start_time, end_time FROM event WHERE eid IN ( SELECT eid FROM event_member WHERE (uid in (SELECT uid2 FROM friend WHERE uid1 = me()) OR uid = me()) ) AND start_time > now()" ;
+            self.authenticated = true;
+            var uid            = response.authResponse.userID;
+            var accessToken    = response.authResponse.accessToken;
+
+            var fql_query = "SELECT name, description, all_members_count, attending_count, creator, location, start_time, end_time " + 
+                            "FROM event " +
+                            "WHERE eid IN " +
+                            "( SELECT eid FROM event_member " + 
+                              "WHERE (uid in (SELECT uid2 FROM friend WHERE uid1 = me()) OR uid = me()) ) AND start_time > now()" ;
 
             FB.api({
                 method: 'fql.query',
@@ -83,18 +88,13 @@ angular.module('myApp.services', []).
               },
               function(response){
                 console.log(response);
-                $rootScope.events = response;
+
+                $rootScope.$apply(function() {
+                  $rootScope.events = response;
+                });
+
               }
             );  
-
-            //   FB.api({ method: 'fql.query', query: 'SELECT user_location, user_status, publish_actions, user_events, user_friends, read_stream,offline_access,publish_stream FROM permissions WHERE uid=me()' }, function(resp) {
-            //     for(var key in resp[0]) {
-            //         if(resp[0][key] === "1")
-            //             console.log(key+' is granted')
-            //         else
-            //             console.log(key+' is not granted')
-            //     }
-            // });
           } 
           else {
            console.log('User cancelled login or did not fully authorize.');

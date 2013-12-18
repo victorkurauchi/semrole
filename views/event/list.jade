@@ -1,16 +1,14 @@
 fb(app-id='426661280792851')
   
-span {{events}}  
-table.table
-  thead
-    tr
-      th Evento
-      th Data
-      th Onde
-  tbody
-    tr(ng-repeat="event in events")
-      td {{event.name}}
-      td {{event.start_time | date:'dd/MM/yyyy'}}
-      td {{event.location}}
+div.row
+  div.col-md-6(ng-repeat="event in events")
+    div.panel.panel-default
+      div.panel-heading
+        strong {{event.name}}
+      div.panel-body
+        p {{event.description | cut:true:200:' ... veja o evento'}}
 
-.clearfix
+        p {{event.start_time | date:'dd/MM/yyyy'}} / {{event.location}} &nbsp;&nbsp;&nbsp;
+          span.glyphicon.glyphicon-map-marker
+
+        p confirmados: {{event.attending_count}} ~ convidados: {{event.all_members_count}}
